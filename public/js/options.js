@@ -84,6 +84,19 @@ $(function(){
     // get associated attraction and add it to the current day in the trip
     var attraction = attractionsModule.getByTypeAndId(type, id);
     tripModule.addToCurrent(attraction);
+    $.ajax({
+      method: 'POST',
+      url: '/api/days/',//+ id + type,
+      data: attraction // e.g. for POST requests
+    })
+    .then(function (responseData) {
+      console.log('Attarction successfully added!');
+    // some code to run when the response comes back
+    })
+    .catch(function (errorObj) {
+      console.error(errorObj);
+      // some code to run if the request errors out
+    });
   });
 
 });

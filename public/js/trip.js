@@ -19,8 +19,24 @@ var tripModule = (function () {
 
   // application state
 
-  var days = [],
+    var days = [],
       currentDay;
+
+    $.ajax({
+      method: 'GET',
+      url: '/api/days',
+      // data: , // e.g. for POST requests
+    })
+    .then(function (responseData) {
+      days = responseData;
+      // some code to run when the response comes back
+      days.forEach((day) => dayModule.create(day));
+    })
+    .catch(function (errorObj) {
+      console.error(errorObj);
+      // some code to run if the request errors out
+    });
+
 
   // jQuery selections
 
@@ -52,7 +68,22 @@ var tripModule = (function () {
     if (days.length === 1) {
       currentDay = newDay;
     }
-    switchTo(newDay);
+      switchTo(newDay);
+
+    // $.ajax({
+    //   method: 'POST',
+    //   url: '/api/days/',
+    //   data: newDay// e.g. for POST requests
+    // })
+    // .then(function (responseData) {
+    //   console.log('sent a new day to database');
+    // })
+    // .catch(function (errorObj) {
+    //   console.error(errorObj);
+    //   // some code to run if the request errors out
+    // });
+
+    //switchTo(newDay);
   }
 
   function deleteCurrentDay () {

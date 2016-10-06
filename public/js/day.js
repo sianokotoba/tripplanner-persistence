@@ -13,7 +13,25 @@
  * This module has one public method: `.create()`, used by `days.js`.
  */
 
+//var days;
+
 var dayModule = (function () {
+
+
+  // $.ajax({
+  //   method: 'GET',
+  //   url: '/api/days',
+  //   // data: , // e.g. for POST requests
+  // })
+  // .then(function (responseData) {
+  //   days = responseData;
+  //   // some code to run when the response comes back
+  //   days.forEach((day) => publicAPI.create(day));
+  // })
+  // .catch(function (errorObj) {
+  //   console.error(errorObj);
+  //   // some code to run if the request errors out
+  // });
 
   // jQuery selections
 
@@ -54,6 +72,18 @@ var dayModule = (function () {
     this.$button.on('click', function (){
       this.blur(); // removes focus box from buttons
       tripModule.switchTo(self);
+      $.ajax({
+        method: 'POST',
+        url: '/api/days',
+        data: this// e.g. for POST requests
+      })
+      .then(function (responseData) {
+        console.log('sent a new day to database');
+      })
+      .catch(function (errorObj) {
+        console.error(errorObj);
+        // some code to run if the request errors out
+      });
     });
     return this;
   };

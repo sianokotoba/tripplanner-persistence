@@ -7,6 +7,7 @@ var Place = require('./models/place');
 var Hotel = require('./models/hotel');
 var Restaurant = require('./models/restaurant');
 var Activity = require('./models/activity');
+var Day = require('./models/day');
 
 var data = {
   hotel: [
@@ -60,6 +61,12 @@ var data = {
     {name: "Union Square Holiday Market", place: {address: "Union Sq & W 14th St", city: "New York", state: "NY", phone: "123-456-7890", location: [40.733615, -73.987995]}, age_range: "All" },
     {name: "Strand Bookstore", place: {address: "828 Broadway", city: "New York", state: "NY", phone: "123-456-7890", location: [40.733274, -73.990870]}, age_range: "All" }
   ]
+  // day: [
+  //   {number: 1},
+  //   {number: 2},
+  //   {number: 3},
+  //   {number: 4}
+  // ]
 };
 
 db.sync({force: true})
