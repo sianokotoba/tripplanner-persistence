@@ -1,5 +1,5 @@
 var express = require('express');
-var volleyball = require('volleyball');
+var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var nunjucks = require('nunjucks');
 var path = require('path');
@@ -14,7 +14,7 @@ app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
 
 // logging and body-parsing
-app.use(volleyball);
+app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -26,7 +26,9 @@ app.use('/jquery', express.static(path.join(__dirname, '/node_modules/jquery/dis
 app.use(express.static(path.join(__dirname, '/public')));
 
 // serve dynamic routes
-app.use(require('./routes'));
+app.use('/', require('./routes'));
+app.use('/api', require('./routes/api/attractions'));
+app.use('/api/days', require('./routes/api/days'));
 
 // failed to catch req above means 404, forward to error handler
 app.use(function (req, res, next) {
