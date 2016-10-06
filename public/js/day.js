@@ -70,20 +70,20 @@ var dayModule = (function () {
       .text(this.number);
     var self = this;
     this.$button.on('click', function (){
-      this.blur(); // removes focus box from buttons
+      //this.blur(); // removes focus box from buttons
       tripModule.switchTo(self);
-      $.ajax({
-        method: 'POST',
-        url: '/api/days',
-        data: this// e.g. for POST requests
-      })
-      .then(function (responseData) {
-        console.log('sent a new day to database');
-      })
-      .catch(function (errorObj) {
-        console.error(errorObj);
-        // some code to run if the request errors out
-      });
+      // $.ajax({
+      //   method: 'POST',
+      //   url: '/api/days',
+      //   data: this// e.g. for POST requests
+      // })
+      // .then(function (responseData) {
+      //   console.log('sent a new day to database');
+      // })
+      // .catch(function (errorObj) {
+      //   console.error(errorObj);
+      //   // some code to run if the request errors out
+      // });
     });
     return this;
   };

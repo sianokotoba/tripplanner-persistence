@@ -62,26 +62,27 @@ var tripModule = (function () {
   });
 
   function addDay () {
-    if (this && this.blur) this.blur(); // removes focus box from buttons
+    console.log(this);
+    //if (this && this.blur) this.blur(); // removes focus box from buttons
     var newDay = dayModule.create({ number: days.length + 1 }); // dayModule
     days.push(newDay);
     if (days.length === 1) {
       currentDay = newDay;
     }
-      switchTo(newDay);
+      //switchTo(newDay);
 
-    // $.ajax({
-    //   method: 'POST',
-    //   url: '/api/days/',
-    //   data: newDay// e.g. for POST requests
-    // })
-    // .then(function (responseData) {
-    //   console.log('sent a new day to database');
-    // })
-    // .catch(function (errorObj) {
-    //   console.error(errorObj);
-    //   // some code to run if the request errors out
-    // });
+    $.ajax({
+      method: 'POST',
+      url: '/api/days/',
+      data: newDay// e.g. for POST requests
+    })
+    .then(function (responseData) {
+      console.log('sent a new day to database');
+    })
+    .catch(function (errorObj) {
+      console.error(errorObj);
+      // some code to run if the request errors out
+    });
 
     //switchTo(newDay);
   }
