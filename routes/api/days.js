@@ -20,7 +20,7 @@ router.get('/', function(req, res, next){
 });
 
 router.post('/', function(req, res, next){
-  console.log(chalk.blue('we are hitting the post'));
+  console.log(chalk.blue(req.query));
   day.findOrCreate({
     where: {
       number: req.body.number
